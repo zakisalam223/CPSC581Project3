@@ -165,15 +165,16 @@ bool buttonPressed(Button &button) {
 
 // ==========================================
 // RGB LED FUNCTION
-// Common Cathode
+// Common Anode - In Anode LED, 0 is maximum brightness and 255 is off.
 // ==========================================
 
+const int LED_BRIGHTNESS = 150;
 void setColor(bool red, bool green, bool blue,
               byte red_pin, byte green_pin, byte blue_pin) {
 
-  digitalWrite(red_pin, red ? HIGH : LOW);
-  digitalWrite(green_pin, green ? HIGH : LOW);
-  digitalWrite(blue_pin, blue ? HIGH : LOW);
+  analogWrite(red_pin, red ? 255 - LED_BRIGHTNESS: 255);
+  analogWrite(green_pin, green ? 255 - LED_BRIGHTNESS: 255);
+  analogWrite(blue_pin, blue ? 255 - LED_BRIGHTNESS: 255);
 }
 
 
