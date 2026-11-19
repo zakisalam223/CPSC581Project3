@@ -199,21 +199,22 @@ void updateSideLED(SideTimer &side, bool isSide1) {
     bluePin = BLUE_PIN_2;
   }
 
-  // Finished: solid green
-  if (side.timerFinished) {
-
-    setColor(false, true, false,
-             redPin, greenPin, bluePin);
-  }
-
   // Currently cooking: Leave its blinking LED unchanged
-  else if (side.timerRunning) {
+  if (side.timerRunning) {
     return;
   }
 
   // Joystick selected side: solid white
   else if ((isSide1 && grill_side_1) || (!isSide1 && grill_side_2)) {
     setColor(true, true, true, redPin, greenPin, bluePin);
+  }
+
+
+  // Finished: solid green
+  else if (side.timerFinished) {
+
+    setColor(false, true, false,
+             redPin, greenPin, bluePin);
   }
 
   // Not selected: LED off
